@@ -47,14 +47,14 @@ a { color: inherit; }
 .amp {
   display: inline-block; position: relative;
   color: var(--green);
-  font-style: italic; font-weight: 900;
-  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
-  font-size: 1.1em; line-height: 0;
-  margin: 0 .06em 0 .1em; letter-spacing: 0;
-  transform: translateY(.06em) rotate(-4deg);
+  font-style: normal; font-weight: 800;
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 144;
+  font-size: 1.12em; line-height: 0;
+  margin: 0 .08em; letter-spacing: 0;
+  transform: translateY(.03em) rotate(-6deg);
   text-shadow: .025em .03em 0 rgba(63, 122, 79, .18);
 }
-.names.small .amp { font-size: 1.05em; transform: translateY(.04em) rotate(-4deg); }
+.names.small .amp { font-size: 1.08em; transform: translateY(.02em) rotate(-6deg); }
 .names.small { font-size: clamp(2.25rem, 8vw, 3.75rem); margin-top: 2.5rem; padding-bottom: 0; text-align: center; }
 
 /* Place + date */
@@ -99,6 +99,13 @@ a { color: inherit; }
   display: inline-block; margin-bottom: 1rem;
   font-size: .75rem; font-weight: 600; letter-spacing: .12em;
   border: 1.5px dashed var(--coral); border-radius: 999px; padding: .1rem .8rem;
+}
+#rsvp { text-align: center; }
+#rsvp h2, .deadline { text-wrap: balance; }
+.deadline {
+  display: block; margin: .25rem 0 .75rem !important;
+  font-family: var(--serif); font-style: italic; font-size: 1.1rem; font-weight: 500;
+  color: var(--green);
 }
 .signoff { font-family: var(--serif); font-style: italic; font-size: 1.25rem; }
 .btn {
