@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <!-- Placeholder: replace with your own photo (e.g. images/photo-2.jpg) and update the <img> in index.html -->
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#CFE3C8"/><stop offset="1" stop-color="#3F7A4F"/></linearGradient></defs>
+  <rect width="400" height="400" fill="url(#g)"/>
+  <circle cx="200" cy="165" r="48" fill="#fff" fill-opacity=".45"/>
+  <path d="M90 340c0-62 50-100 110-100s110 38 110 100z" fill="#fff" fill-opacity=".45"/>
+  <text x="200" y="385" font-family="sans-serif" font-size="16" text-anchor="middle" fill="#fff" fill-opacity=".9">Photo 2</text>
+</svg>
