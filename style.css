@@ -25,12 +25,14 @@ a { color: inherit; }
 .nav a {
   font-size: .95rem; font-weight: 500; text-decoration: none;
   padding: .25rem 0; border-bottom: 2px solid transparent;
+  display: inline-flex; align-items: center; min-height: 2.75rem;
 }
 .nav a:hover { border-bottom-color: currentColor; }
 .nav a[aria-current="page"] { font-weight: 700; border-bottom-color: currentColor; }
 
 /* Names */
 .names {
+  position: relative; z-index: 2;
   margin: clamp(2.5rem, 7vw, 5rem) 0 0;
   font-family: var(--serif);
   font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
@@ -40,11 +42,16 @@ a { color: inherit; }
 }
 .names a { text-decoration: none; }
 .amp {
+  display: inline-block; position: relative;
   color: var(--green);
-  font-style: italic; font-weight: 400;
-  font-size: 1.15em; line-height: 0;
-  margin: 0 .04em;
+  font-style: italic; font-weight: 900;
+  font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+  font-size: 1.3em; line-height: 0;
+  margin: 0 .02em; letter-spacing: 0;
+  transform: translateY(.2em) rotate(-6deg);
+  text-shadow: .025em .03em 0 rgba(63, 122, 79, .18);
 }
+.names.small .amp { font-size: 1.15em; transform: translateY(.06em) rotate(-6deg); }
 .names.small { font-size: clamp(2.25rem, 8vw, 3.75rem); margin-top: 3rem; text-align: left; }
 
 /* Place + date */
@@ -58,18 +65,25 @@ a { color: inherit; }
 /* Polaroids */
 .stack {
   position: relative; width: min(20rem, 78vw); aspect-ratio: 1 / 1.2;
-  margin: clamp(4rem, 9vw, 7rem) auto;
+  margin: clamp(2rem, 6vw, 4rem) auto clamp(4rem, 9vw, 7rem);
 }
 .polaroid {
   position: absolute; inset: 0; margin: 0;
   background: #fff; padding: 5% 5% 17%;
   box-shadow: 0 .5rem 1.5rem rgba(110, 60, 30, .18), 0 .1rem .3rem rgba(110, 60, 30, .12);
 }
-.polaroid img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.polaroid { transition: transform .8s cubic-bezier(.3, .7, .2, 1); will-change: transform; }
+.polaroid.no-anim { transition: none; }
+.polaroid img { display: block; background: #f3ede0; width: 100%; height: 100%; object-fit: cover; }
 .polaroid:nth-child(1) { transform: rotate(-9deg) translate(-8%, 2%); }
 .polaroid:nth-child(2) { transform: rotate(7deg) translate(9%, -2%); }
 .polaroid:nth-child(3) { transform: rotate(-3deg) translate(-2%, 4%); }
 .polaroid:nth-child(4) { transform: rotate(2deg); }
+.polaroid:nth-child(4).leaving {
+  transform: translate(65%, -8%) rotate(16deg); opacity: 0;
+  transition: transform .9s cubic-bezier(.5, 0, .75, .4), opacity .9s ease-in;
+}
+.polaroid.leaving.no-anim { transition: none; }
 
 /* Content */
 .section { max-width: 34rem; margin: 0 auto 5rem; }
@@ -95,7 +109,29 @@ a { color: inherit; }
 }
 .btn:hover { transform: rotate(-2deg) scale(1.04); }
 
-.soon { text-align: center; margin: 7rem auto 0; }
+/* What's the Plan? date cards */
+.dates {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+  max-width: 40rem; margin: 3rem auto 0;
+}
+.date-card {
+  text-align: center; padding: 2rem 1.25rem 1.75rem;
+  background: #fff; border: 2px solid var(--coral); border-radius: 1.5rem 1.5rem 1.5rem .4rem;
+  box-shadow: .35rem .35rem 0 var(--green);
+  transform: rotate(-1.5deg);
+}
+.date-card.alt { border-radius: 1.5rem 1.5rem .4rem 1.5rem; transform: rotate(1.5deg); }
+.date-card h2 {
+  margin: 0 0 .5rem; font-family: var(--serif);
+  font-variation-settings: "SOFT" 100, "WONK" 1;
+  font-weight: 700; font-style: italic; font-size: clamp(1.9rem, 6vw, 2.6rem); line-height: 1.1;
+  color: var(--green);
+}
+.date-card p { margin: 0; font-weight: 500; }
+.date-card a { font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: .2em; }
+@media (max-width: 40rem) { .dates { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+.soon { text-align: center; margin: 4rem auto 0; }
 .soon h1 {
   font-family: var(--serif); font-variation-settings: "SOFT" 100, "WONK" 1;
   font-weight: 500; font-size: clamp(2rem, 7vw, 3.25rem); margin: 0 0 .5rem;
@@ -104,8 +140,13 @@ a { color: inherit; }
 
 @media (max-width: 40rem) {
   .page { padding: 1.25rem 1.25rem 4rem; }
-  .nav { justify-content: flex-start; gap: .25rem 1.1rem; }
+  .nav { justify-content: flex-start; gap: 0 1.1rem; }
+  .nav a { font-size: 1rem; }
   .meta { flex-direction: column; align-items: flex-start; gap: .5rem; font-size: .72rem; letter-spacing: .22em; }
   .meta span:last-child { text-align: left; }
 }
-@media (prefers-reduced-motion: reduce) { .btn { transition: none; } .btn:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; } .btn:hover { transform: none; }
+  .polaroid, .polaroid:nth-child(4).leaving { transition: opacity .9s ease; }
+  .polaroid:nth-child(4).leaving { transform: rotate(2deg); }
+}
