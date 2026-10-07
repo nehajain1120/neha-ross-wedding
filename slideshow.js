@@ -26,13 +26,13 @@
     top.classList.add('leaving');
     setTimeout(function () {
       // Send the finished polaroid to the bottom of the stack with the next photo.
+      // It stays out to the side while re-ordered, then slides back in under the pile.
       top.classList.add('no-anim');
       top.querySelector('img').src = src(photo);
       stack.insertBefore(top, stack.firstElementChild);
       void top.offsetWidth;
-      top.classList.remove('leaving');
-      void top.offsetWidth;
       top.classList.remove('no-anim');
+      top.classList.remove('leaving');
       next = wrap(next + 1);
       preload(next);
       busy = false;
