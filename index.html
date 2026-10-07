@@ -3,30 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Neha &amp; Ross | June 2027</title>
+  <title>Neha &amp; Ross | June 4–5, 2027</title>
+  <meta name="description" content="Neha Jain and Ross Kelly are getting married. June 4–5, 2027, in Cerritos and Huntington Beach, California.">
+  <meta name="theme-color" content="#16284a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    html, body {
-      height: 100%;
+    :root {
+      --navy: #16284a;
+      --mist: #eef2ef;
+      --sea: #cfdcd9;
+      --marigold: #e9a21b;
+      --coral: #b8456a;
+      --serif: "Fraunces", Georgia, "Times New Roman", serif;
+      --sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--mist);
+      color: var(--navy);
+      font-family: var(--sans);
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      -webkit-text-size-adjust: 100%;
+    }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--marigold); outline-offset: 3px; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4rem 1.5rem 9rem;
+      background: var(--navy);
+      color: var(--mist);
+      overflow: hidden;
+    }
+    .hero::before {
+      /* low sun over the water */
+      content: "";
+      position: absolute;
+      width: min(90vw, 36rem);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      right: -12vw;
+      top: 8%;
+      background: radial-gradient(circle at 40% 40%, var(--marigold), #d9772b 70%);
+      opacity: .92;
+    }
+    .hero-inner { position: relative; max-width: 64rem; width: 100%; margin: 0 auto; }
+    .names {
+      margin: 0;
+      font-family: var(--serif);
+      font-weight: 300;
+      font-variation-settings: "opsz" 144;
+      font-size: clamp(4.25rem, 19vw, 11.5rem);
+      line-height: .9;
+      letter-spacing: -.03em;
+    }
+    .names span { display: block; }
+    .names .amp {
+      font-style: italic;
+      font-size: .5em;
+      line-height: 1;
+      margin: .05em 0 .05em 1.1em;
+      color: var(--marigold);
+    }
+    .names .ross { margin-left: .6em; }
+    .when {
+      margin: 2.5rem 0 0;
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 5vw, 2.25rem);
+      font-weight: 400;
+    }
+    .where { margin: .25rem 0 0; opacity: .8; }
+    .waves {
+      position: absolute;
+      left: 0; bottom: -1px;
+      width: 200%;
+      height: 5.5rem;
+      animation: drift 28s linear infinite;
+    }
+    @keyframes drift { to { transform: translateX(-50%); } }
+
+    /* Sections */
+    main > section { padding: 4.5rem 1.5rem; }
+    .wrap { max-width: 64rem; margin: 0 auto; }
+    h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2rem, 7vw, 3.25rem);
+      line-height: 1.1;
+      letter-spacing: -.015em;
+      margin: 0 0 2.5rem;
+    }
+
+    .days { display: grid; gap: 1.25rem; }
+    .day {
+      padding: 2rem 1.5rem;
+      border-top: 4px solid var(--marigold);
+      background: #fff;
+    }
+    .day:nth-child(2) { border-top-color: var(--coral); }
+    .day .date {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      line-height: 1;
+      font-weight: 300;
       margin: 0;
     }
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #faf7f2;
-      color: #3b3b3b;
-      font-family: Georgia, "Times New Roman", serif;
-      text-align: center;
+    .day .date small { display: block; font-size: 1.125rem; font-family: var(--sans); font-weight: 500; margin-bottom: .5rem; }
+    .day h3 { font-family: var(--serif); font-weight: 400; font-size: 1.5rem; margin: 1.5rem 0 .25rem; }
+    .day p { margin: 0 0 .5rem; max-width: 34ch; }
+    .note { opacity: .7; font-size: .95rem; }
+    .map-link { font-weight: 600; text-underline-offset: 4px; }
+
+    /* RSVP */
+    .rsvp { background: var(--sea); }
+    .rsvp .box {
+      border: 2px dashed var(--navy);
+      padding: 2.5rem 1.5rem;
+      max-width: 40rem;
     }
-    h1 {
-      font-weight: normal;
-      font-size: clamp(1.75rem, 6vw, 3.5rem);
-      letter-spacing: 0.05em;
-      padding: 0 1rem;
+    .rsvp p { margin: 0 0 1.5rem; max-width: 40ch; }
+    .btn {
+      display: inline-block;
+      min-height: 3rem;
+      padding: .75rem 1.75rem;
+      border-radius: 999px;
+      background: var(--navy);
+      color: var(--mist);
+      font: 600 1rem/1.5 var(--sans);
+      text-decoration: none;
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    footer {
+      padding: 3rem 1.5rem 4rem;
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: 48rem) {
+      main > section { padding: 7rem 2rem; }
+      .days { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .day { padding: 2.5rem 2.25rem; }
+      .rsvp .box { padding: 3.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .waves { animation: none; }
     }
   </style>
 </head>
 <body>
-  <h1>Neha &amp; Ross | June 2027</h1>
+  <header class="hero">
+    <div class="hero-inner">
+      <h1 class="names">
+        <span>Neha</span>
+        <span class="amp" aria-label="and">&amp;</span>
+        <span class="ross">Ross</span>
+      </h1>
+      <p class="when">June 4–5, 2027</p>
+      <p class="where">Cerritos &amp; Huntington Beach, California</p>
+    </div>
+    <svg class="waves" viewBox="0 0 2400 88" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="#eef2ef" d="M0 44 C100 8 200 8 300 44 S500 80 600 44 S800 8 900 44 S1100 80 1200 44 S1400 8 1500 44 S1700 80 1800 44 S2000 8 2100 44 S2300 80 2400 44 V88 H0 Z"/>
+    </svg>
+  </header>
+
+  <main>
+    <section id="events" aria-labelledby="events-title">
+      <div class="wrap">
+        <h2 id="events-title">Join us for two days</h2>
+        <div class="days">
+          <article class="day">
+            <p class="date"><small>Friday</small>June 4</p>
+            <h3>Cerritos, CA</h3>
+            <p>Venue and schedule to come.</p>
+          </article>
+          <article class="day">
+            <p class="date"><small>Saturday</small>June 5</p>
+            <h3>Offshore 9</h3>
+            <p>Huntington Beach, CA</p>
+            <p class="note">Schedule to come.</p>
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Offshore+9+Huntington+Beach+CA">Open in Maps</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="rsvp" class="rsvp" aria-labelledby="rsvp-title">
+      <div class="wrap">
+        <h2 id="rsvp-title">RSVP</h2>
+        <div class="box">
+          <p>Our RSVP form is coming soon. Check back here to let us know if you can make it.</p>
+          <!-- TODO: replace this placeholder with the Google Form link or embed -->
+          <span class="btn" role="link" aria-disabled="true">RSVP opens soon</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>With love, Neha &amp; Ross</footer>
 </body>
 </html>
