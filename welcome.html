@@ -99,11 +99,11 @@
         <filter id="fogblur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
       </defs>
       <path id="ridge" fill="var(--ridge)"/>
-      <g id="ridgeTrees" fill="#B4CB98"></g>
-      <g id="lookout"></g>
+      <pattern id="treeTex" patternUnits="userSpaceOnUse"></pattern>
+      <path id="ridgeTex"/>
+      <g id="dome"></g>
       <g id="fog" filter="url(#fogblur)" fill="#FFFDF0" opacity=".85"></g>
       <path id="hill" fill="var(--hill)"/>
-      <g id="hillTrees"></g>
       <path id="trail" fill="none" stroke="#EEF2D9" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round"/>
       <path id="rope" fill="none" stroke="#B98A6E" stroke-width="2" stroke-linecap="round"/>
 
@@ -132,14 +132,15 @@
           <g id="head" transform="translate(2.5 3.5)">
             <circle cx="24" cy="-61" r="8.6" fill="#F3CDB0"/>
             <circle cx="33" cy="-61.6" r="1.5" fill="#F3CDB0"/>
-            <!-- full, short beard and moustache -->
-            <path fill="#A8592F" d="M17.8 -63.2 Q17.6 -56.6 21.2 -54.4 Q25 -52.4 29.4 -53.4 Q33 -54.6 33.3 -58.4 L33.6 -60
-                     Q31.6 -60.6 29.6 -59.9 Q27.9 -60.3 26.8 -59.2 Q25.5 -57.6 24.3 -59.4 Q23.3 -61.6 21.6 -62.3 Z"/>
-            <!-- curly hair -->
+            <!-- short stubbly beard -->
+            <path fill="#A8592F" opacity=".42" d="M18.2 -62.6 Q18.4 -56.8 21.6 -55 Q25 -53.4 29.2 -54.2 Q32.6 -55.2 33 -58.6 L33.3 -59.8
+                     Q31.6 -60.3 29.8 -59.7 Q28 -59.9 27 -59 Q25.6 -57.8 24.4 -59.2 Q23.2 -61.2 21.9 -61.8 Z"/>
+            <path fill="#8E4A2A" opacity=".5" d="M26.6 -59.2 Q29.8 -60.7 33.3 -59.8 L33.2 -58.9 Q30 -59.4 27.4 -58.4Z"/>
+            <!-- curly hair, close-cropped -->
             <g fill="#8E4A2A">
-              <circle cx="17" cy="-66.4" r="3.9"/><circle cx="18.6" cy="-71" r="4.1"/><circle cx="22.8" cy="-73.6" r="4.2"/>
-              <circle cx="27.4" cy="-73.2" r="3.8"/><circle cx="30.6" cy="-70.4" r="3"/><circle cx="15.4" cy="-62" r="2.8"/>
-              <circle cx="20.6" cy="-76.2" r="2.6"/><circle cx="25.6" cy="-76.6" r="2.4"/><circle cx="14.4" cy="-69.2" r="2.6"/>
+              <circle cx="17.2" cy="-65.6" r="3.2"/><circle cx="18.2" cy="-69.6" r="3.4"/><circle cx="22" cy="-71.5" r="3.5"/>
+              <circle cx="26.4" cy="-71.3" r="3.2"/><circle cx="29.8" cy="-69" r="2.5"/><circle cx="15.6" cy="-61.9" r="2.4"/>
+              <circle cx="15.2" cy="-68.4" r="2.3"/>
             </g>
             <circle cx="20.6" cy="-62.4" r="1.6" fill="#E3B193"/>
             <circle cx="28.6" cy="-63.6" r="1.15" fill="#2E3A4A"/>
@@ -244,7 +245,7 @@
     var rp = R.map(function (p) { return [p[0] * W, H * 0.12 + p[1] * H * 0.62]; });
     $('ridge').setAttribute('d', smoothPath(rp) + ' L' + W + ' ' + H + ' L0 ' + H + 'Z');
 
-    // trees on the mountain: little redwoods and oaks, plus the fire lookout on East Peak
+    // Mount Tam: a soft texture of tiny trees, and the "golf ball" radar dome on West Peak
     function ridgeY(fx) {
       for (var i = 0; i < R.length - 1; i++) if (fx <= R[i + 1][0]) {
         var k = (fx - R[i][0]) / (R[i + 1][0] - R[i][0]);
@@ -252,28 +253,22 @@
       }
       return H * 0.12 + R[R.length - 1][1] * H * 0.62;
     }
-    function pine(x, y, h, fill) {
-      var w = h * 0.42;
-      return '<path fill="' + fill + '" d="M' + x + ' ' + (y - h) + 'L' + (x + w * 0.62) + ' ' + (y - h * 0.48) + 'L' + (x + w * 0.38) + ' ' + (y - h * 0.48) +
-        'L' + (x + w) + ' ' + (y - h * 0.1) + 'L' + (x - w) + ' ' + (y - h * 0.1) + 'L' + (x - w * 0.38) + ' ' + (y - h * 0.48) + 'L' + (x - w * 0.62) + ' ' + (y - h * 0.48) + 'Z"/>' +
-        '<rect x="' + (x - h * 0.05) + '" y="' + (y - h * 0.12) + '" width="' + (h * 0.1) + '" height="' + (h * 0.14) + '" fill="#8C6A4E"/>';
+    var unit = Math.max(9, Math.min(W, 1100) / 55);
+    var tu = Math.max(13, unit), tw = tu * 1.45, th = tu * 1.25;
+    function tree(x, y, c) {
+      return '<path fill="' + c + '" d="M' + x + ' ' + (y - th * 0.42) + 'Q' + (x + tw * 0.2) + ' ' + (y - th * 0.1) + ' ' + (x + tw * 0.24) + ' ' + (y + th * 0.08) +
+        'Q' + x + ' ' + (y + th * 0.16) + ' ' + (x - tw * 0.24) + ' ' + (y + th * 0.08) + 'Q' + (x - tw * 0.2) + ' ' + (y - th * 0.1) + ' ' + x + ' ' + (y - th * 0.42) + 'Z"/>';
     }
-    function oak(x, y, r, fill) {
-      return '<rect x="' + (x - r * 0.12) + '" y="' + (y - r * 1.2) + '" width="' + (r * 0.24) + '" height="' + (r * 1.2) + '" fill="#8C6A4E"/>' +
-        '<circle cx="' + (x - r * 0.55) + '" cy="' + (y - r * 1.35) + '" r="' + (r * 0.72) + '" fill="' + fill + '"/>' +
-        '<circle cx="' + (x + r * 0.5) + '" cy="' + (y - r * 1.4) + '" r="' + (r * 0.78) + '" fill="' + fill + '"/>' +
-        '<circle cx="' + x + '" cy="' + (y - r * 1.9) + '" r="' + (r * 0.8) + '" fill="' + fill + '"/>';
-    }
-    var unit = Math.max(9, Math.min(W, 1100) / 55), html = '';
-    [.04, .09, .15, .2, .27, .31, .36, .43, .62, .66, .71, .76, .83, .88, .94].forEach(function (fx, i) {
-      var h = unit * (0.9 + (i * 37 % 10) / 22);
-      html += pine(fx * W, ridgeY(fx) + h * 0.55, h, i % 3 ? '#B4CB98' : '#A9C28C');
-    });
-    $('ridgeTrees').innerHTML = html;
-    var lx = 0.55 * W, ly = ridgeY(0.55), lw = unit * 0.9;
-    $('lookout').innerHTML = '<rect x="' + (lx - lw / 2) + '" y="' + (ly - lw * 0.75) + '" width="' + lw + '" height="' + (lw * 0.8) + '" fill="#EDE4C8" stroke="#B4CB98" stroke-width="1.2"/>' +
-      '<path d="M' + (lx - lw * 0.7) + ' ' + (ly - lw * 0.72) + 'L' + lx + ' ' + (ly - lw * 1.25) + 'L' + (lx + lw * 0.7) + ' ' + (ly - lw * 0.72) + 'Z" fill="#E8A08F"/>' +
-      '<rect x="' + (lx - lw * 0.18) + '" y="' + (ly - lw * 0.55) + '" width="' + (lw * 0.36) + '" height="' + (lw * 0.26) + '" fill="#9FC3D9"/>';
+    var pat = $('treeTex');
+    pat.setAttribute('width', tw); pat.setAttribute('height', th);
+    pat.innerHTML = tree(tw * 0.25, th * 0.42, '#C9D9AF') + tree(tw * 0.75, th * 0.92, '#C2D4A6') + tree(tw * 0.75, th * -0.08, '#C2D4A6');
+    $('ridgeTex').setAttribute('d', smoothPath(rp.map(function (p) { return [p[0], p[1] + unit * 0.45]; })) + ' L' + W + ' ' + H + ' L0 ' + H + 'Z');
+    $('ridgeTex').setAttribute('fill', 'url(#treeTex)');
+
+    var dx = 0.46 * W, dy = ridgeY(0.46) + unit * 0.2, dr = Math.max(7, unit * 0.72);
+    $('dome').innerHTML = '<rect x="' + (dx - dr * 0.75) + '" y="' + (dy - dr * 0.55) + '" width="' + (dr * 1.5) + '" height="' + (dr * 0.6) + '" fill="#E7E0CC"/>' +
+      '<circle cx="' + dx + '" cy="' + (dy - dr * 0.75) + '" r="' + dr + '" fill="#FFFFFF" stroke="#D9D2BE" stroke-width="1"/>' +
+      '<path d="M' + (dx - dr * 0.5) + ' ' + (dy - dr * 1.2) + 'q' + (dr * 0.3) + ' ' + (-dr * 0.25) + ' ' + (dr * 0.7) + ' ' + (-dr * 0.1) + '" fill="none" stroke="#F1ECDD" stroke-width="1.2" stroke-linecap="round"/>';
 
     var fog = $('fog'); fog.innerHTML = '';
     [[.18, .62, .2], [.47, .55, .17], [.82, .64, .22]].forEach(function (f) {
@@ -292,15 +287,7 @@
     tr.forEach(function (p) { t += ' L' + p[0].toFixed(1) + ' ' + p[1].toFixed(1); });
     $('trail').setAttribute('d', t);
 
-    // a few trees on the near hill, kept clear of where Ross and the card stop
-    var near = '', u2 = unit * 1.15;
-    [[0.035, 'o', 1.1], [0.1, 'p', 2.2], [0.16, 'o', 0.9]].forEach(function (tr) {
-      var x = tr[0] * W, y = hy(x) + u2 * 0.9;
-      near += tr[1] === 'o' ? oak(x, y, u2 * tr[2], '#8FB07A') : pine(x, y, u2 * tr[2], '#7FA46A');
-    });
-    var past = g.sx + (W - g.sx) * 0.5;
-    if (W - g.sx > u2 * 2) near += pine(past, hy(past) + u2 * 0.8, u2 * 2, '#7FA46A');
-    $('hillTrees').innerHTML = near;
+
   }
 
   // ---- Ross ---------------------------------------------------------------
