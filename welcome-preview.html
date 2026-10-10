@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Neha &amp; Ross</title>
+  <meta name="theme-color" content="#FCF6D9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FCF6D9;
+      --coral: #E8705A;
+      --green: #3F7A4F;
+      --hill-back: #DCE6C3;
+      --hill-front: #C5D7AE;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --ride: 2.4s;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; background: var(--cream); color: var(--coral);
+      font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .scene { min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 2rem 0; }
+
+    /* Names */
+    .names {
+      margin: 0; padding: 0 1rem;
+      font-family: var(--serif); font-weight: 600; line-height: .95; letter-spacing: -.02em;
+      font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+      font-size: clamp(3rem, 13vw, 6.25rem); white-space: nowrap; text-align: center;
+    }
+    .amp {
+      display: inline-block; color: var(--green); font-weight: 800;
+      font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 144;
+      font-size: 1.12em; line-height: 0; margin: 0 .08em;
+      transform: translateY(.03em) rotate(-6deg);
+      text-shadow: .025em .03em 0 rgba(63, 122, 79, .18);
+    }
+    .when { margin: 1.1rem 0 0; font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--green); }
+
+    /* The road the bike rides along */
+    .road { position: relative; width: 100%; margin-top: clamp(2.5rem, 8vh, 4.5rem); height: clamp(12rem, 26vh, 15rem); }
+    .train {
+      position: absolute; left: 50%; bottom: 3.2rem;
+      display: flex; align-items: flex-end;
+      transform: translateX(-50%);
+      animation: ride-in var(--ride) cubic-bezier(.22, .7, .25, 1) both;
+    }
+    @keyframes ride-in { from { transform: translateX(calc(-50% - 100vw)); } }
+    .train.leaving { animation: ride-out 1.4s cubic-bezier(.55, 0, .8, .45) forwards; }
+    @keyframes ride-out { to { transform: translateX(calc(-50% + 100vw)); } }
+
+    /* Password card being towed */
+    .card {
+      position: relative; width: clamp(13.5rem, 60vw, 21rem);
+      background: #fff; border: 2px solid var(--coral);
+      border-radius: 1.25rem 1.25rem 1.25rem .35rem;
+      box-shadow: .3rem .3rem 0 var(--green);
+      padding: 1.1rem 1.1rem 1.15rem;
+      transform-origin: 100% 100%;
+      animation: tug var(--ride) ease-out both;
+    }
+    @keyframes tug {
+      0% { transform: rotate(-7deg); }
+      70% { transform: rotate(-4deg); }
+      85% { transform: rotate(2deg); }
+      100% { transform: rotate(-1.5deg); }
+    }
+    .card label { display: block; font-family: var(--serif); font-size: 1.15rem; font-weight: 500; line-height: 1.25; color: var(--green); margin-bottom: .65rem; }
+    .row { display: flex; gap: .5rem; }
+    .card input {
+      flex: 1; min-width: 0; font: inherit; font-size: 1rem; color: #5a3a30;
+      padding: .55rem .8rem; border: 1.5px solid #ecc9bd; border-radius: 999px; background: var(--cream);
+    }
+    .card input:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(232, 112, 90, .2); }
+    .card button {
+      font: inherit; font-weight: 700; font-size: .95rem; letter-spacing: .06em;
+      color: var(--cream); background: var(--coral); border: 0; border-radius: 999px;
+      padding: .55rem 1.1rem; cursor: pointer;
+    }
+    .card button:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+    .msg { min-height: 1.4em; margin: .5rem 0 0; font-size: .88rem; color: var(--coral); }
+    .card.shake { animation: shake .4s ease; }
+    @keyframes shake { 25% { transform: translateX(-6px) rotate(-1.5deg); } 75% { transform: translateX(6px) rotate(-1.5deg); } }
+
+    /* Tow rope + bike */
+    .rope { width: clamp(1.5rem, 6vw, 3rem); height: 2.4rem; margin-bottom: 1.6rem; flex: none; }
+    .rope path { fill: none; stroke: #b98a6e; stroke-width: 2; stroke-linecap: round; }
+    .bike { width: clamp(5.75rem, 22vw, 9.5rem); flex: none; overflow: visible; margin-bottom: -.15rem; }
+    .bike .frame { fill: none; stroke: var(--coral); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+    .bike .tire { fill: none; stroke: var(--green); stroke-width: 3.2; }
+    .bike .spokes { stroke: var(--green); stroke-width: 1.2; opacity: .6; }
+    .bike .wheel { transform-box: fill-box; transform-origin: center; animation: spin .45s linear 5.3 both; }
+    .train.leaving .wheel { animation: spin .4s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .bike .flag { fill: var(--coral); transform-box: fill-box; transform-origin: 0 50%; animation: flutter .5s ease-in-out 5 alternate both; }
+    @keyframes flutter { from { transform: skewY(-8deg); } to { transform: skewY(6deg); } }
+
+    /* Hills for hiking */
+    .hills { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: clamp(6.5rem, 14vh, 9rem); }
+    .ground { position: absolute; left: 0; right: 0; bottom: 3.2rem; height: 2px; background: #e9c7a4; }
+    .trail { fill: none; stroke: #f6eecb; stroke-width: 2.5; stroke-dasharray: 2 9; stroke-linecap: round; }
+
+    .help { margin: 1.25rem 0 2.5rem; padding: 0 1.5rem; text-align: center; font-size: .92rem; max-width: 30rem; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .train, .card, .wheel, .flag { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+<main class="scene">
+  <h1 class="names">Neha <span class="amp">&amp;</span> Ross</h1>
+  <p class="when">June 4–5, 2027</p>
+
+  <div class="road">
+    <svg class="hills" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+      <path fill="var(--hill-back)" d="M0 70 C120 30 220 40 330 62 C430 82 520 20 640 26 C760 32 830 70 940 58 C1040 47 1120 22 1200 34 V120 H0Z"/>
+      <path fill="var(--hill-front)" d="M0 92 C140 70 260 88 380 80 C520 70 600 96 760 86 C900 77 1040 96 1200 80 V120 H0Z"/>
+      <path class="trail" d="M60 112 C220 96 300 108 460 100 C620 92 700 110 860 102 C980 96 1080 104 1180 98"/>
+    </svg>
+    <div class="ground" aria-hidden="true"></div>
+
+    <div class="train" id="train">
+      <form class="card" id="card" autocomplete="off">
+        <label for="pw">Password, please!</label>
+        <div class="row">
+          <input id="pw" name="pw" type="password" autocomplete="off" autocapitalize="none" spellcheck="false" required>
+          <button type="submit">Enter</button>
+        </div>
+        <p class="msg" id="msg" role="status" aria-live="polite"></p>
+      </form>
+
+      <svg class="rope" viewBox="0 0 40 30" aria-hidden="true"><path d="M1 26 C14 30 26 12 39 4"/></svg>
+
+      <svg class="bike" viewBox="0 0 100 62" aria-hidden="true">
+        <g class="wheel">
+          <circle class="tire" cx="20" cy="42" r="17"/>
+          <path class="spokes" d="M20 25 V59 M3 42 H37 M8 30 L32 54 M32 30 L8 54"/>
+        </g>
+        <g class="wheel">
+          <circle class="tire" cx="80" cy="42" r="17"/>
+          <path class="spokes" d="M80 25 V59 M63 42 H97 M68 30 L92 54 M92 30 L68 54"/>
+        </g>
+        <path class="frame" d="M20 42 L46 42 L38 16 Z M38 16 L71 17 L46 42 M71 17 L80 42 M71 17 L68 8 L76 6 M32 13 H44 M38 16 L36 13"/>
+        <path class="frame" d="M33 13 L28 2" style="stroke-width:1.6"/>
+        <path class="flag" d="M28 2 L18 5 L28 8 Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <p class="help">The password is in the message we sent with this link. If you can't find it, text Neha or Ross.</p>
+</main>
+
+<script>
+  // PREVIEW ONLY: any password works here so you can see the animation.
+  var form = document.getElementById('card');
+  var train = document.getElementById('train');
+  var msg = document.getElementById('msg');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var pw = document.getElementById('pw').value.trim();
+    if (!pw) {
+      msg.textContent = 'Type the password first.';
+      return;
+    }
+    msg.textContent = 'Welcome!';
+    form.querySelector('button').disabled = true;
+    train.classList.add('leaving');
+    setTimeout(function () { window.location.href = 'index.html'; }, 1300);
+  });
+</script>
+</body>
+</html>
