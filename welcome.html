@@ -99,53 +99,68 @@
         <filter id="fogblur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
       </defs>
       <path id="ridge" fill="var(--ridge)"/>
+      <g id="ridgeTrees" fill="#B4CB98"></g>
+      <g id="lookout"></g>
       <g id="fog" filter="url(#fogblur)" fill="#FFFDF0" opacity=".85"></g>
       <path id="hill" fill="var(--hill)"/>
+      <g id="hillTrees"></g>
       <path id="trail" fill="none" stroke="#EEF2D9" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round"/>
       <path id="rope" fill="none" stroke="#B98A6E" stroke-width="2" stroke-linecap="round"/>
 
-      <!-- Ross on his bike. Local origin = bottom bracket; wheels sit 17 below. -->
+      <!-- Ross on his road bike. Local origin = bottom bracket; wheels (r 18) sit on the ground. -->
       <g id="rider">
         <g id="farleg" fill="none" stroke-linecap="round">
-          <path id="farthigh" stroke="#BFB197" stroke-width="7"/>
-          <path id="farshin" stroke="#D9AD8C" stroke-width="4.5"/>
-          <circle id="farshoe" r="2.6" fill="#4A4A4A"/>
+          <path id="farthigh" stroke="#24242A" stroke-width="7"/>
+          <path id="farshin" stroke="#DDB497" stroke-width="4.4"/>
+          <circle id="farshoe" r="2.6" fill="#E9E4DA" stroke="#9A948A" stroke-width=".8"/>
         </g>
-        <g id="wheelR"><circle cx="-26" cy="0" r="17" fill="none" stroke="var(--green)" stroke-width="3.2"/>
-          <path d="M-26 -17V17M-43 0H-9M-38 -12L-14 12M-14 -12L-38 12" stroke="var(--green)" stroke-width="1.1" opacity=".55"/></g>
-        <g id="wheelF"><circle cx="34" cy="0" r="17" fill="none" stroke="var(--green)" stroke-width="3.2"/>
-          <path d="M34 -17V17M17 0H51M22 -12L46 12M46 -12L22 12" stroke="var(--green)" stroke-width="1.1" opacity=".55"/></g>
-        <path fill="none" stroke="var(--coral)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-              d="M-26 0L0 0L-8 -26Z M-8 -26L25 -25L0 0 M25 -25L34 0 M25 -25L22 -33L30 -35 M-14 -29H-2 M-8 -26L-9 -29"/>
-        <path id="crank" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
+        <g id="wheelR"><circle cx="-27" cy="0" r="18" fill="none" stroke="#2E5B3B" stroke-width="2.6"/>
+          <circle cx="-27" cy="0" r="15.6" fill="none" stroke="var(--green)" stroke-width="1"/>
+          <path d="M-27 -15.6V15.6M-42.6 0H-11.4M-38 -11L-16 11M-16 -11L-38 11" stroke="var(--green)" stroke-width=".8" opacity=".6"/></g>
+        <g id="wheelF"><circle cx="35" cy="0" r="18" fill="none" stroke="#2E5B3B" stroke-width="2.6"/>
+          <circle cx="35" cy="0" r="15.6" fill="none" stroke="var(--green)" stroke-width="1"/>
+          <path d="M35 -15.6V15.6M19.4 0H50.6M24 -11L46 11M46 -11L24 11" stroke="var(--green)" stroke-width=".8" opacity=".6"/></g>
+        <!-- frame: thin tubes, sloping top tube, drop handlebars -->
+        <path fill="none" stroke="var(--coral)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"
+              d="M-27 0L0 0L-7 -28 M-27 0L-6.5 -25 M-7 -27L24 -30L27 -22L0 0 M27 -22Q31 -11 35 0"/>
+        <path fill="none" stroke="#3B3B40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              d="M-7 -28L-9 -33 M-16 -34.3Q-10 -35.6 -3.5 -34 M24 -30L29.5 -33 M29.5 -33H33 Q37.5 -33 37.5 -28.5 Q37.5 -24 33.5 -23.5"/>
+        <path id="crank" stroke="#3B3B40" stroke-width="2.2" stroke-linecap="round"/>
         <g id="body">
           <path id="torso" fill="none" stroke="#8FB6E0" stroke-width="12" stroke-linecap="round"/>
-          <path id="neck" fill="none" stroke="#F1C5A3" stroke-width="5" stroke-linecap="round"/>
-          <g id="head">
-            <circle cx="21" cy="-69" r="8.5" fill="#F1C5A3"/>
-            <path fill="#9A5A35" d="M13.5 -67 Q14.5 -58.5 22.5 -58.6 Q29 -59 30 -64.5 L27.6 -64 Q26 -61.5 22 -62.2 Q17.5 -63 16.6 -67.5Z"/>
-            <g fill="#9A5A35">
-              <circle cx="14.5" cy="-75" r="4"/><circle cx="19" cy="-78.4" r="4"/><circle cx="24.3" cy="-78" r="3.8"/>
-              <circle cx="28" cy="-75.2" r="2.8"/><circle cx="11.6" cy="-70.5" r="3.6"/><circle cx="12.6" cy="-65.8" r="2.9"/>
+          <path id="neck" fill="none" stroke="#F3CDB0" stroke-width="5" stroke-linecap="round"/>
+          <g id="head" transform="translate(2.5 3.5)">
+            <circle cx="24" cy="-61" r="8.6" fill="#F3CDB0"/>
+            <circle cx="33" cy="-61.6" r="1.5" fill="#F3CDB0"/>
+            <!-- full, short beard and moustache -->
+            <path fill="#A8592F" d="M17.8 -63.2 Q17.6 -56.6 21.2 -54.4 Q25 -52.4 29.4 -53.4 Q33 -54.6 33.3 -58.4 L33.6 -60
+                     Q31.6 -60.6 29.6 -59.9 Q27.9 -60.3 26.8 -59.2 Q25.5 -57.6 24.3 -59.4 Q23.3 -61.6 21.6 -62.3 Z"/>
+            <!-- curly hair -->
+            <g fill="#8E4A2A">
+              <circle cx="17" cy="-66.4" r="3.9"/><circle cx="18.6" cy="-71" r="4.1"/><circle cx="22.8" cy="-73.6" r="4.2"/>
+              <circle cx="27.4" cy="-73.2" r="3.8"/><circle cx="30.6" cy="-70.4" r="3"/><circle cx="15.4" cy="-62" r="2.8"/>
+              <circle cx="20.6" cy="-76.2" r="2.6"/><circle cx="25.6" cy="-76.6" r="2.4"/><circle cx="14.4" cy="-69.2" r="2.6"/>
             </g>
-            <circle cx="25.4" cy="-70.6" r="1.15" fill="#3A2A22"/>
-            <circle cx="24.2" cy="-65.8" r="2.1" fill="#E8705A" opacity=".45"/>
-            <ellipse id="pant" cx="28.3" cy="-63.7" rx="1.5" ry="2" fill="#7A2E22"/>
-            <path id="smile" d="M25.6 -64.2 Q28 -61.8 30 -64.4" fill="none" stroke="#7A2E22" stroke-width="1.2" stroke-linecap="round" opacity="0"/>
+            <circle cx="20.6" cy="-62.4" r="1.6" fill="#E3B193"/>
+            <circle cx="28.6" cy="-63.6" r="1.15" fill="#2E3A4A"/>
+            <path d="M27.2 -66.2 Q28.8 -67 30.4 -66.2" fill="none" stroke="#8E4A2A" stroke-width=".9" stroke-linecap="round"/>
+            <circle cx="27.4" cy="-60.9" r="1.7" fill="#E8705A" opacity=".4"/>
+            <ellipse id="pant" cx="30.4" cy="-56.7" rx="1.5" ry="1.9" fill="#5E2219"/>
+            <path id="smile" d="M28.2 -57.3 Q30.4 -55.3 32.4 -57.4" fill="none" stroke="#5E2219" stroke-width="1.1" stroke-linecap="round" opacity="0"/>
           </g>
-          <g id="huff" fill="none" stroke="#9BB7C9" stroke-width="1.3" stroke-linecap="round">
-            <path d="M33 -65 q2.5 -1.5 5 0"/><path d="M34 -61 q2.5 -1.5 5 0"/>
+          <g id="huff" transform="translate(2.5 3.5)" fill="none" stroke="#9BB7C9" stroke-width="1.3" stroke-linecap="round">
+            <path d="M35.5 -58 q2.5 -1.5 5 0"/><path d="M36.5 -54 q2.5 -1.5 5 0"/>
           </g>
-          <g id="sweat" fill="#7CC3E8"></g>
+          <g id="sweat" transform="translate(2.5 3.5)" fill="#7CC3E8"></g>
           <g fill="none" stroke-linecap="round">
-            <path id="upperarm" stroke="#8FB6E0" stroke-width="6"/>
-            <path id="forearm" stroke="#F1C5A3" stroke-width="4.3"/>
+            <path id="upperarm" stroke="#8FB6E0" stroke-width="5.6"/>
+            <path id="forearm" stroke="#F3CDB0" stroke-width="4.1"/>
           </g>
         </g>
         <g id="nearleg" fill="none" stroke-linecap="round">
-          <path id="thigh" stroke="#D8CBB3" stroke-width="7.5"/>
-          <path id="shin" stroke="#F1C5A3" stroke-width="4.8"/>
-          <circle id="shoe" r="2.8" fill="#4A4A4A"/>
+          <path id="thigh" stroke="#2F2F36" stroke-width="7.4"/>
+          <path id="shin" stroke="#F3CDB0" stroke-width="4.6"/>
+          <circle id="shoe" r="2.8" fill="#FFFFFF" stroke="#9A948A" stroke-width=".8"/>
         </g>
       </g>
     </svg>
@@ -211,7 +226,7 @@
     g.cw = card.offsetWidth; g.ch = card.offsetHeight;
     g.s = mobile ? 0.9 : Math.min(1.55, Math.max(1.1, W / 820));
     g.cardCx = mobile ? Math.max(g.cw / 2 + 10, W * 0.4) : W / 2;
-    g.anchor = Math.min(g.cardCx + g.cw / 2 + 18 + 43 * g.s, W - 52 * g.s - 4);
+    g.anchor = Math.min(g.cardCx + g.cw / 2 + 18 + 45 * g.s, W - 54 * g.s - 4);
     g.offset = g.anchor - g.cardCx;
     g.sx = g.anchor + 120 * g.s;
     g.yBase = H + 4;
@@ -229,6 +244,37 @@
     var rp = R.map(function (p) { return [p[0] * W, H * 0.12 + p[1] * H * 0.62]; });
     $('ridge').setAttribute('d', smoothPath(rp) + ' L' + W + ' ' + H + ' L0 ' + H + 'Z');
 
+    // trees on the mountain: little redwoods and oaks, plus the fire lookout on East Peak
+    function ridgeY(fx) {
+      for (var i = 0; i < R.length - 1; i++) if (fx <= R[i + 1][0]) {
+        var k = (fx - R[i][0]) / (R[i + 1][0] - R[i][0]);
+        return H * 0.12 + (R[i][1] + (R[i + 1][1] - R[i][1]) * k) * H * 0.62;
+      }
+      return H * 0.12 + R[R.length - 1][1] * H * 0.62;
+    }
+    function pine(x, y, h, fill) {
+      var w = h * 0.42;
+      return '<path fill="' + fill + '" d="M' + x + ' ' + (y - h) + 'L' + (x + w * 0.62) + ' ' + (y - h * 0.48) + 'L' + (x + w * 0.38) + ' ' + (y - h * 0.48) +
+        'L' + (x + w) + ' ' + (y - h * 0.1) + 'L' + (x - w) + ' ' + (y - h * 0.1) + 'L' + (x - w * 0.38) + ' ' + (y - h * 0.48) + 'L' + (x - w * 0.62) + ' ' + (y - h * 0.48) + 'Z"/>' +
+        '<rect x="' + (x - h * 0.05) + '" y="' + (y - h * 0.12) + '" width="' + (h * 0.1) + '" height="' + (h * 0.14) + '" fill="#8C6A4E"/>';
+    }
+    function oak(x, y, r, fill) {
+      return '<rect x="' + (x - r * 0.12) + '" y="' + (y - r * 1.2) + '" width="' + (r * 0.24) + '" height="' + (r * 1.2) + '" fill="#8C6A4E"/>' +
+        '<circle cx="' + (x - r * 0.55) + '" cy="' + (y - r * 1.35) + '" r="' + (r * 0.72) + '" fill="' + fill + '"/>' +
+        '<circle cx="' + (x + r * 0.5) + '" cy="' + (y - r * 1.4) + '" r="' + (r * 0.78) + '" fill="' + fill + '"/>' +
+        '<circle cx="' + x + '" cy="' + (y - r * 1.9) + '" r="' + (r * 0.8) + '" fill="' + fill + '"/>';
+    }
+    var unit = Math.max(9, Math.min(W, 1100) / 55), html = '';
+    [.04, .09, .15, .2, .27, .31, .36, .43, .62, .66, .71, .76, .83, .88, .94].forEach(function (fx, i) {
+      var h = unit * (0.9 + (i * 37 % 10) / 22);
+      html += pine(fx * W, ridgeY(fx) + h * 0.55, h, i % 3 ? '#B4CB98' : '#A9C28C');
+    });
+    $('ridgeTrees').innerHTML = html;
+    var lx = 0.55 * W, ly = ridgeY(0.55), lw = unit * 0.9;
+    $('lookout').innerHTML = '<rect x="' + (lx - lw / 2) + '" y="' + (ly - lw * 0.75) + '" width="' + lw + '" height="' + (lw * 0.8) + '" fill="#EDE4C8" stroke="#B4CB98" stroke-width="1.2"/>' +
+      '<path d="M' + (lx - lw * 0.7) + ' ' + (ly - lw * 0.72) + 'L' + lx + ' ' + (ly - lw * 1.25) + 'L' + (lx + lw * 0.7) + ' ' + (ly - lw * 0.72) + 'Z" fill="#E8A08F"/>' +
+      '<rect x="' + (lx - lw * 0.18) + '" y="' + (ly - lw * 0.55) + '" width="' + (lw * 0.36) + '" height="' + (lw * 0.26) + '" fill="#9FC3D9"/>';
+
     var fog = $('fog'); fog.innerHTML = '';
     [[.18, .62, .2], [.47, .55, .17], [.82, .64, .22]].forEach(function (f) {
       var e = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
@@ -245,6 +291,16 @@
     var t = 'M' + tr[0][0] + ' ' + tr[0][1];
     tr.forEach(function (p) { t += ' L' + p[0].toFixed(1) + ' ' + p[1].toFixed(1); });
     $('trail').setAttribute('d', t);
+
+    // a few trees on the near hill, kept clear of where Ross and the card stop
+    var near = '', u2 = unit * 1.15;
+    [[0.035, 'o', 1.1], [0.1, 'p', 2.2], [0.16, 'o', 0.9]].forEach(function (tr) {
+      var x = tr[0] * W, y = hy(x) + u2 * 0.9;
+      near += tr[1] === 'o' ? oak(x, y, u2 * tr[2], '#8FB07A') : pine(x, y, u2 * tr[2], '#7FA46A');
+    });
+    var past = g.sx + (W - g.sx) * 0.5;
+    if (W - g.sx > u2 * 2) near += pine(past, hy(past) + u2 * 0.8, u2 * 2, '#7FA46A');
+    $('hillTrees').innerHTML = near;
   }
 
   // ---- Ross ---------------------------------------------------------------
@@ -259,15 +315,15 @@
   function line(id, a, b) { $(id).setAttribute('d', 'M' + a[0] + ' ' + a[1] + 'L' + b[0] + ' ' + b[1]); }
 
   var crankA = 0, wheelA = 0, clock = 0;
-  var HIP = [-8, -33];
+  var HIP = [-9, -37];
 
   function poseRider(coasting) {
     var bob = coasting ? 0 : Math.sin(clock * 7) * 0.6 + Math.sin(crankA * 2) * 0.5;
-    var shoulder = [14, -57 + bob];
+    var shoulder = [17.5, -48.5 + bob];
     $('body').setAttribute('transform', 'translate(0 ' + bob.toFixed(2) + ')');
     line('torso', HIP, [shoulder[0], shoulder[1] - bob]);
-    line('neck', [16, -59], [19, -63]);
-    var hand = [27, -35];
+    line('neck', [20.5, -50], [23, -53]);
+    var hand = [32.5, -33.5];
     var elbow = ik([shoulder[0], shoulder[1] - bob], [hand[0], hand[1] - bob], 13.5, 13.5, function (k) { return k[1]; });
     line('upperarm', [shoulder[0], shoulder[1] - bob], elbow);
     line('forearm', elbow, [hand[0], hand[1] - bob]);
@@ -276,12 +332,12 @@
     var p1 = [7 * Math.cos(a), 7 * Math.sin(a)], p2 = [-p1[0], -p1[1]];
     $('crank').setAttribute('d', 'M' + p2[0] + ' ' + p2[1] + 'L' + p1[0] + ' ' + p1[1]);
     var fwd = function (k) { return k[0] - k[1] * 0.25; };
-    var k1 = ik(HIP, p1, 21.5, 21.5, fwd), k2 = ik(HIP, p2, 21.5, 21.5, fwd);
+    var k1 = ik(HIP, p1, 22.8, 22.8, fwd), k2 = ik(HIP, p2, 22.8, 22.8, fwd);
     line('thigh', HIP, k1); line('shin', k1, p1); $('shoe').setAttribute('cx', p1[0]); $('shoe').setAttribute('cy', p1[1]);
     line('farthigh', HIP, k2); line('farshin', k2, p2); $('farshoe').setAttribute('cx', p2[0]); $('farshoe').setAttribute('cy', p2[1]);
 
-    $('wheelR').setAttribute('transform', 'rotate(' + (wheelA * 180 / Math.PI).toFixed(1) + ' -26 0)');
-    $('wheelF').setAttribute('transform', 'rotate(' + (wheelA * 180 / Math.PI).toFixed(1) + ' 34 0)');
+    $('wheelR').setAttribute('transform', 'rotate(' + (wheelA * 180 / Math.PI).toFixed(1) + ' -27 0)');
+    $('wheelF').setAttribute('transform', 'rotate(' + (wheelA * 180 / Math.PI).toFixed(1) + ' 35 0)');
 
     // Panting: open mouth, little puffs, sweat drops flying off
     $('pant').setAttribute('opacity', coasting ? 0 : 1);
@@ -292,7 +348,7 @@
     if (!coasting) {
       for (var i = 0; i < 3; i++) {
         var ph = (clock * 1.3 + i / 3) % 1;
-        var x = 12 - ph * 9 - i * 2, y = -80 + ph * ph * 22 + i * 2;
+        var x = 14 - ph * 9 - i * 2, y = -74 + ph * ph * 22 + i * 2;
         html += '<path opacity="' + (1 - ph).toFixed(2) + '" d="M' + x.toFixed(1) + ' ' + y.toFixed(1) +
                 ' q1.6 2.6 0 3.6 q-1.6 -1 0 -3.6Z"/>';
       }
@@ -305,7 +361,7 @@
     var y = hy(x), target = slope(x);
     angle += (target - angle) * 0.25;
     $('rider').setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + angle.toFixed(2) +
-      ') scale(' + g.s + ') translate(0 -17)');
+      ') scale(' + g.s + ') translate(0 -18)');
     poseRider(coasting);
 
     // Card being towed behind
@@ -316,7 +372,7 @@
     // Rope from the card's right edge to the back of the saddle
     var rad = ca * Math.PI / 180, lx = g.cw / 2, ly = -g.ch * 0.55;
     var ax = cx + lx * Math.cos(rad) - ly * Math.sin(rad), ay = cy + lx * Math.sin(rad) + ly * Math.cos(rad);
-    var ra = angle * Math.PI / 180, sx0 = -12 * g.s, sy0 = (-28 - 17) * g.s;
+    var ra = angle * Math.PI / 180, sx0 = -14 * g.s, sy0 = (-34 - 18) * g.s;
     var bx = x + sx0 * Math.cos(ra) - sy0 * Math.sin(ra), by = y + sx0 * Math.sin(ra) + sy0 * Math.cos(ra);
     var mx = (ax + bx) / 2, my = (ay + by) / 2 + 9;
     $('rope').setAttribute('d', 'M' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' Q' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' ' + bx.toFixed(1) + ' ' + by.toFixed(1));
@@ -345,7 +401,7 @@
       if (q < 0.15) crankA += (riderX - prevX) / (7 * g.s) * 0.55 + dt * 6;
       if (q >= 1) { go(); return; }
     }
-    wheelA += (riderX - prevX) / (17 * g.s);
+    wheelA += (riderX - prevX) / (18 * g.s);
     place(riderX, state === 'descend' && (now - t0) / DESCEND > 0.15);
     requestAnimationFrame(frame);
   }
