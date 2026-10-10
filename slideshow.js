@@ -1,14 +1,14 @@
 // Polaroid slideshow.
-// - Moves to the next photo every 1.5 seconds on its own.
+// - Moves to the next photo every 2 seconds on its own.
 // - Click or tap the photo to go to the next one.
 // - On phones, swipe the top photo left or right to flick it away.
-// Any click, tap or swipe restarts the 1.5 second timer.
+// Any click, tap or swipe restarts the 2 second timer.
 (function () {
   var stack = document.getElementById('stack');
   if (!stack) return;
 
   var TOTAL = 14;          // photos: images/photo-01.jpg ... photo-14.jpg
-  var INTERVAL = 1500;     // ms between photos
+  var INTERVAL = 2000;     // ms between photos
   var LEAVE_MS = 450;      // how long the top photo takes to slide away
   var SWIPE_MIN = 50;      // px a finger must travel to count as a swipe
 

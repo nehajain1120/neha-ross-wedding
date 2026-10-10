@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Neha &amp; Ross</title>
+  <meta name="theme-color" content="#FCF6D9">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FCF6D9;
+      --coral: #E8705A;
+      --green: #3F7A4F;
+      --ridge: #DCE6C3;
+      --hill: #C5D7AE;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      background: var(--cream); color: var(--coral);
+      font-family: var(--sans); font-size: 1.0625rem; line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .page {
+      min-height: 100vh; min-height: 100svh;
+      display: grid; grid-template-rows: auto 1fr auto;
+    }
+    header { text-align: center; padding: clamp(2.5rem, 8vh, 4.5rem) 1rem 0; }
+    .names {
+      margin: 0;
+      font-family: var(--serif); font-weight: 600; line-height: .95; letter-spacing: -.02em;
+      font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144;
+      font-size: clamp(3rem, 13vw, 6.25rem); white-space: nowrap;
+    }
+    .amp {
+      display: inline-block; color: var(--green); font-weight: 800;
+      font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 144;
+      font-size: 1.12em; line-height: 0; margin: 0 .08em;
+      transform: translateY(.03em) rotate(-6deg);
+      text-shadow: .025em .03em 0 rgba(63, 122, 79, .18);
+    }
+    .when { margin: 1rem 0 0; font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--green); }
+
+    /* The hill, Ross and the password card */
+    .scene { position: relative; min-height: 22rem; overflow: hidden; }
+    @media (max-width: 40rem) { .page { grid-template-rows: auto auto 1fr; } .scene { height: 25rem; } footer { padding-top: .5rem; } }
+    .scene svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .card {
+      position: absolute; left: 0; top: 0; z-index: 2;
+      width: min(19rem, 60vw);
+      background: #fff; border: 2px solid var(--coral);
+      border-radius: 1.25rem 1.25rem 1.25rem .35rem;
+      box-shadow: .3rem .3rem 0 var(--green);
+      padding: 1rem 1rem 1.05rem;
+      transform-origin: 50% 100%;
+      visibility: hidden;
+    }
+    .card.ready { visibility: visible; }
+    .card label { display: block; font-family: var(--serif); font-size: 1.15rem; font-weight: 500; line-height: 1.25; color: var(--green); margin-bottom: .6rem; }
+    .row { display: flex; gap: .45rem; }
+    .card input {
+      flex: 1; min-width: 0; font: inherit; font-size: 1rem; color: #5a3a30;
+      padding: .5rem .8rem; border: 1.5px solid #ecc9bd; border-radius: 999px; background: var(--cream);
+    }
+    .card input:focus { outline: none; border-color: var(--coral); box-shadow: 0 0 0 3px rgba(232, 112, 90, .2); }
+    .card button {
+      font: inherit; font-weight: 700; font-size: .95rem; letter-spacing: .05em;
+      color: var(--cream); background: var(--coral); border: 0; border-radius: 999px;
+      padding: .5rem 1rem; cursor: pointer;
+    }
+    .card button:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+    .msg { min-height: 1.35em; margin: .45rem 0 0; font-size: .86rem; line-height: 1.35; color: var(--coral); }
+
+    footer { background: var(--hill); color: #2f5a3a; text-align: center; padding: .25rem 1.5rem 1.75rem; font-size: .92rem; }
+    footer p { margin: 0 auto; max-width: 30rem; }
+
+    @media (max-width: 40rem) {
+      .card { width: min(14.75rem, 60vw); padding: .85rem .8rem .9rem; }
+      .card label { font-size: 1.05rem; }
+      .card button { padding: .5rem .8rem; }
+    }
+  </style>
+</head>
+<body>
+<main class="page">
+  <header>
+    <h1 class="names">Neha <span class="amp">&amp;</span> Ross</h1>
+    <p class="when">June 4–5, 2027</p>
+  </header>
+
+  <div class="scene" id="scene">
+    <svg id="art" aria-hidden="true">
+      <defs>
+        <filter id="fogblur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="10"/></filter>
+      </defs>
+      <path id="ridge" fill="var(--ridge)"/>
+      <g id="fog" filter="url(#fogblur)" fill="#FFFDF0" opacity=".85"></g>
+      <path id="hill" fill="var(--hill)"/>
+      <path id="trail" fill="none" stroke="#EEF2D9" stroke-width="2.5" stroke-dasharray="2 9" stroke-linecap="round"/>
+      <path id="rope" fill="none" stroke="#B98A6E" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Ross on his bike. Local origin = bottom bracket; wheels sit 17 below. -->
+      <g id="rider">
+        <g id="farleg" fill="none" stroke-linecap="round">
+          <path id="farthigh" stroke="#BFB197" stroke-width="7"/>
+          <path id="farshin" stroke="#D9AD8C" stroke-width="4.5"/>
+          <circle id="farshoe" r="2.6" fill="#4A4A4A"/>
+        </g>
+        <g id="wheelR"><circle cx="-26" cy="0" r="17" fill="none" stroke="var(--green)" stroke-width="3.2"/>
+          <path d="M-26 -17V17M-43 0H-9M-38 -12L-14 12M-14 -12L-38 12" stroke="var(--green)" stroke-width="1.1" opacity=".55"/></g>
+        <g id="wheelF"><circle cx="34" cy="0" r="17" fill="none" stroke="var(--green)" stroke-width="3.2"/>
+          <path d="M34 -17V17M17 0H51M22 -12L46 12M46 -12L22 12" stroke="var(--green)" stroke-width="1.1" opacity=".55"/></g>
+        <path fill="none" stroke="var(--coral)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+              d="M-26 0L0 0L-8 -26Z M-8 -26L25 -25L0 0 M25 -25L34 0 M25 -25L22 -33L30 -35 M-14 -29H-2 M-8 -26L-9 -29"/>
+        <path id="crank" stroke="#555" stroke-width="2.2" stroke-linecap="round"/>
+        <g id="body">
+          <path id="torso" fill="none" stroke="#8FB6E0" stroke-width="12" stroke-linecap="round"/>
+          <path id="neck" fill="none" stroke="#F1C5A3" stroke-width="5" stroke-linecap="round"/>
+          <g id="head">
+            <circle cx="21" cy="-69" r="8.5" fill="#F1C5A3"/>
+            <path fill="#9A5A35" d="M13.5 -67 Q14.5 -58.5 22.5 -58.6 Q29 -59 30 -64.5 L27.6 -64 Q26 -61.5 22 -62.2 Q17.5 -63 16.6 -67.5Z"/>
+            <g fill="#9A5A35">
+              <circle cx="14.5" cy="-75" r="4"/><circle cx="19" cy="-78.4" r="4"/><circle cx="24.3" cy="-78" r="3.8"/>
+              <circle cx="28" cy="-75.2" r="2.8"/><circle cx="11.6" cy="-70.5" r="3.6"/><circle cx="12.6" cy="-65.8" r="2.9"/>
+            </g>
+            <circle cx="25.4" cy="-70.6" r="1.15" fill="#3A2A22"/>
+            <circle cx="24.2" cy="-65.8" r="2.1" fill="#E8705A" opacity=".45"/>
+            <ellipse id="pant" cx="28.3" cy="-63.7" rx="1.5" ry="2" fill="#7A2E22"/>
+            <path id="smile" d="M25.6 -64.2 Q28 -61.8 30 -64.4" fill="none" stroke="#7A2E22" stroke-width="1.2" stroke-linecap="round" opacity="0"/>
+          </g>
+          <g id="huff" fill="none" stroke="#9BB7C9" stroke-width="1.3" stroke-linecap="round">
+            <path d="M33 -65 q2.5 -1.5 5 0"/><path d="M34 -61 q2.5 -1.5 5 0"/>
+          </g>
+          <g id="sweat" fill="#7CC3E8"></g>
+          <g fill="none" stroke-linecap="round">
+            <path id="upperarm" stroke="#8FB6E0" stroke-width="6"/>
+            <path id="forearm" stroke="#F1C5A3" stroke-width="4.3"/>
+          </g>
+        </g>
+        <g id="nearleg" fill="none" stroke-linecap="round">
+          <path id="thigh" stroke="#D8CBB3" stroke-width="7.5"/>
+          <path id="shin" stroke="#F1C5A3" stroke-width="4.8"/>
+          <circle id="shoe" r="2.8" fill="#4A4A4A"/>
+        </g>
+      </g>
+    </svg>
+
+    <form class="card" id="card" autocomplete="off" novalidate>
+      <label for="pw">Password, please!</label>
+      <div class="row">
+        <input id="pw" name="pw" type="password" autocomplete="off" autocapitalize="none" autocorrect="off" spellcheck="false">
+        <button type="submit">Enter</button>
+      </div>
+      <p class="msg" id="msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <footer>
+    <p>The password is in the message we sent with this link. If you can't find it, text Neha or Ross.</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  // SHA-256 of the password (lowercased). The password itself isn't stored here.
+  var HASH = '27560a33075a3c2abeaba93e043e5cc628702a9723598d7c4016c762b82f7c92';
+  var KEY = 'nr-welcome', TOKEN = 'ok-' + HASH.slice(0, 12);
+
+  var scene = document.getElementById('scene');
+  var card = document.getElementById('card');
+  var form = card;
+  var input = document.getElementById('pw');
+  var msg = document.getElementById('msg');
+  var $ = function (id) { return document.getElementById(id); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var W, H, g = {};
+
+  // ---- Hill shape --------------------------------------------------------
+  function hy(x) {
+    if (x <= g.sx) {
+      var t = Math.max(0, x / g.sx);
+      return g.yBase - (g.yBase - g.ySum) * Math.pow(t, 1.7);
+    }
+    var u = Math.min(1, (x - g.sx) / (W - g.sx + W * 0.45));
+    var e = (1 - Math.cos(Math.PI * u)) / 2;
+    return g.ySum + (H * 1.12 - g.ySum) * e;
+  }
+  function slope(x) { return Math.atan2(hy(x + 4) - hy(x - 4), 8) * 180 / Math.PI; }
+
+  function smoothPath(pts) {
+    var d = 'M' + pts[0][0] + ' ' + pts[0][1];
+    for (var i = 0; i < pts.length - 1; i++) {
+      var p0 = pts[Math.max(0, i - 1)], p1 = pts[i], p2 = pts[i + 1], p3 = pts[Math.min(pts.length - 1, i + 2)];
+      d += ' C' + (p1[0] + (p2[0] - p0[0]) / 6) + ' ' + (p1[1] + (p2[1] - p0[1]) / 6) + ' ' +
+           (p2[0] - (p3[0] - p1[0]) / 6) + ' ' + (p2[1] - (p3[1] - p1[1]) / 6) + ' ' + p2[0] + ' ' + p2[1];
+    }
+    return d;
+  }
+
+  function layout() {
+    var r = scene.getBoundingClientRect();
+    W = r.width; H = r.height;
+    $('art').setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var mobile = W < 640;
+    g.cw = card.offsetWidth; g.ch = card.offsetHeight;
+    g.s = mobile ? 0.9 : Math.min(1.55, Math.max(1.1, W / 820));
+    g.cardCx = mobile ? Math.max(g.cw / 2 + 10, W * 0.4) : W / 2;
+    g.anchor = Math.min(g.cardCx + g.cw / 2 + 18 + 43 * g.s, W - 52 * g.s - 4);
+    g.offset = g.anchor - g.cardCx;
+    g.sx = g.anchor + 120 * g.s;
+    g.yBase = H + 4;
+    g.ySum = Math.max(H * 0.2, 100 * g.s + 6);
+    // keep the climb steep but rideable (about 25-30 degrees where Ross is)
+    g.ySum = Math.max(g.ySum, g.yBase - g.sx * 0.36);
+    // keep the card fully inside the scene
+    var cardBottom = function () { return hy(g.cardCx); };
+    var guard = 0;
+    while (cardBottom() - g.ch < 6 && guard++ < 40) g.ySum += 6;
+
+    // Mount Tam on the horizon: long ridge, West and East Peak, gentle fall to the bay
+    var R = [[0, .70], [.1, .64], [.22, .57], [.33, .46], [.41, .37], [.46, .33], [.5, .35], [.55, .29],
+             [.6, .32], [.68, .42], [.78, .5], [.9, .52], [1, .5]];
+    var rp = R.map(function (p) { return [p[0] * W, H * 0.12 + p[1] * H * 0.62]; });
+    $('ridge').setAttribute('d', smoothPath(rp) + ' L' + W + ' ' + H + ' L0 ' + H + 'Z');
+
+    var fog = $('fog'); fog.innerHTML = '';
+    [[.18, .62, .2], [.47, .55, .17], [.82, .64, .22]].forEach(function (f) {
+      var e = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+      e.setAttribute('cx', f[0] * W); e.setAttribute('cy', f[1] * H);
+      e.setAttribute('rx', f[2] * W); e.setAttribute('ry', Math.max(14, H * 0.045));
+      fog.appendChild(e);
+    });
+
+    var pts = [], tr = [];
+    for (var x = 0; x <= W + 8; x += 8) { pts.push([x, hy(x)]); tr.push([x, hy(x) + 7 * g.s]); }
+    var d = 'M0 ' + H;
+    pts.forEach(function (p) { d += ' L' + p[0].toFixed(1) + ' ' + p[1].toFixed(1); });
+    $('hill').setAttribute('d', d + ' L' + W + ' ' + H + 'Z');
+    var t = 'M' + tr[0][0] + ' ' + tr[0][1];
+    tr.forEach(function (p) { t += ' L' + p[0].toFixed(1) + ' ' + p[1].toFixed(1); });
+    $('trail').setAttribute('d', t);
+  }
+
+  // ---- Ross ---------------------------------------------------------------
+  function ik(a, b, l1, l2, forward) {
+    var dx = b[0] - a[0], dy = b[1] - a[1], d = Math.min(Math.hypot(dx, dy), l1 + l2 - 0.01);
+    var along = (l1 * l1 - l2 * l2 + d * d) / (2 * d), h = Math.sqrt(Math.max(0, l1 * l1 - along * along));
+    var ux = dx / Math.hypot(dx, dy), uy = dy / Math.hypot(dx, dy);
+    var mx = a[0] + ux * along, my = a[1] + uy * along;
+    var k1 = [mx - uy * h, my + ux * h], k2 = [mx + uy * h, my - ux * h];
+    return forward(k1) > forward(k2) ? k1 : k2;
+  }
+  function line(id, a, b) { $(id).setAttribute('d', 'M' + a[0] + ' ' + a[1] + 'L' + b[0] + ' ' + b[1]); }
+
+  var crankA = 0, wheelA = 0, clock = 0;
+  var HIP = [-8, -33];
+
+  function poseRider(coasting) {
+    var bob = coasting ? 0 : Math.sin(clock * 7) * 0.6 + Math.sin(crankA * 2) * 0.5;
+    var shoulder = [14, -57 + bob];
+    $('body').setAttribute('transform', 'translate(0 ' + bob.toFixed(2) + ')');
+    line('torso', HIP, [shoulder[0], shoulder[1] - bob]);
+    line('neck', [16, -59], [19, -63]);
+    var hand = [27, -35];
+    var elbow = ik([shoulder[0], shoulder[1] - bob], [hand[0], hand[1] - bob], 13.5, 13.5, function (k) { return k[1]; });
+    line('upperarm', [shoulder[0], shoulder[1] - bob], elbow);
+    line('forearm', elbow, [hand[0], hand[1] - bob]);
+
+    var a = coasting ? 0 : crankA;
+    var p1 = [7 * Math.cos(a), 7 * Math.sin(a)], p2 = [-p1[0], -p1[1]];
+    $('crank').setAttribute('d', 'M' + p2[0] + ' ' + p2[1] + 'L' + p1[0] + ' ' + p1[1]);
+    var fwd = function (k) { return k[0] - k[1] * 0.25; };
+    var k1 = ik(HIP, p1, 21.5, 21.5, fwd), k2 = ik(HIP, p2, 21.5, 21.5, fwd);
+    line('thigh', HIP, k1); line('shin', k1, p1); $('shoe').setAttribute('cx', p1[0]); $('shoe').setAttribute('cy', p1[1]);
+    line('farthigh', HIP, k2); line('farshin', k2, p2); $('farshoe').setAttribute('cx', p2[0]); $('farshoe').setAttribute('cy', p2[1]);
+
+    $('wheelR').setAttribute('transform', 'rotate(' + (wheelA * 180 / Math.PI).toFixed(1) + ' -26 0)');
+    $('wheelF').setAttribute('transform', 'rotate(' + (wheelA * 180 / Math.PI).toFixed(1) + ' 34 0)');
+
+    // Panting: open mouth, little puffs, sweat drops flying off
+    $('pant').setAttribute('opacity', coasting ? 0 : 1);
+    $('pant').setAttribute('ry', coasting ? 2 : (1.4 + Math.abs(Math.sin(clock * 7)) * 1.1).toFixed(2));
+    $('smile').setAttribute('opacity', coasting ? 1 : 0);
+    $('huff').setAttribute('opacity', coasting ? 0 : (0.25 + 0.75 * Math.max(0, Math.sin(clock * 7))).toFixed(2));
+    var sw = $('sweat'), html = '';
+    if (!coasting) {
+      for (var i = 0; i < 3; i++) {
+        var ph = (clock * 1.3 + i / 3) % 1;
+        var x = 12 - ph * 9 - i * 2, y = -80 + ph * ph * 22 + i * 2;
+        html += '<path opacity="' + (1 - ph).toFixed(2) + '" d="M' + x.toFixed(1) + ' ' + y.toFixed(1) +
+                ' q1.6 2.6 0 3.6 q-1.6 -1 0 -3.6Z"/>';
+      }
+    }
+    sw.innerHTML = html;
+  }
+
+  var riderX = 0, angle = 0;
+  function place(x, coasting) {
+    var y = hy(x), target = slope(x);
+    angle += (target - angle) * 0.25;
+    $('rider').setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + angle.toFixed(2) +
+      ') scale(' + g.s + ') translate(0 -17)');
+    poseRider(coasting);
+
+    // Card being towed behind
+    var cx = x - g.offset, cy = hy(cx);
+    var ca = slope(cx) * 0.3 + (coasting ? 0 : Math.sin(clock * 3.2) * 0.8) - 1.2;
+    card.style.transform = 'translate(' + (cx - g.cw / 2).toFixed(1) + 'px,' + (cy - g.ch).toFixed(1) + 'px) rotate(' + ca.toFixed(2) + 'deg)';
+
+    // Rope from the card's right edge to the back of the saddle
+    var rad = ca * Math.PI / 180, lx = g.cw / 2, ly = -g.ch * 0.55;
+    var ax = cx + lx * Math.cos(rad) - ly * Math.sin(rad), ay = cy + lx * Math.sin(rad) + ly * Math.cos(rad);
+    var ra = angle * Math.PI / 180, sx0 = -12 * g.s, sy0 = (-28 - 17) * g.s;
+    var bx = x + sx0 * Math.cos(ra) - sy0 * Math.sin(ra), by = y + sx0 * Math.sin(ra) + sy0 * Math.cos(ra);
+    var mx = (ax + bx) / 2, my = (ay + by) / 2 + 9;
+    $('rope').setAttribute('d', 'M' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' Q' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' ' + bx.toFixed(1) + ' ' + by.toFixed(1));
+  }
+
+  // ---- Animation ----------------------------------------------------------
+  var state = 'climb', t0 = null, last = null, CLIMB = 4600, DESCEND = 1700, startX, endX, descendFrom;
+
+  function frame(now) {
+    if (t0 === null) { t0 = now; last = now; }
+    var dt = Math.min(50, now - last) / 1000; last = now; clock += dt;
+    var prevX = riderX;
+
+    if (state === 'climb') {
+      var p = Math.min(1, (now - t0) / CLIMB);
+      var e = 1 - Math.pow(1 - p, 2.2);
+      e += Math.sin(p * Math.PI * 9) * 0.006 * (1 - p);   // little surges with each pedal stroke
+      riderX = startX + (g.anchor - startX) * Math.min(1, e);
+      if (p >= 1) { state = 'wait'; riderX = g.anchor; if (!matchMedia('(hover: none)').matches) input.focus({ preventScroll: true }); }
+      crankA += (riderX - prevX) / (7 * g.s) * 0.55 + 0;
+    } else if (state === 'wait') {
+      riderX = g.anchor;
+    } else if (state === 'descend') {
+      var q = Math.min(1, (now - t0) / DESCEND);
+      riderX = descendFrom + (endX - descendFrom) * (q * q * q);
+      if (q < 0.15) crankA += (riderX - prevX) / (7 * g.s) * 0.55 + dt * 6;
+      if (q >= 1) { go(); return; }
+    }
+    wheelA += (riderX - prevX) / (17 * g.s);
+    place(riderX, state === 'descend' && (now - t0) / DESCEND > 0.15);
+    requestAnimationFrame(frame);
+  }
+
+  function start() {
+    layout();
+    startX = -60 * g.s;
+    riderX = reduce ? g.anchor : startX;
+    angle = slope(riderX);
+    if (reduce) state = 'wait';
+    place(riderX, false);
+    card.classList.add('ready');
+    requestAnimationFrame(frame);
+  }
+
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      layout();
+      if (state === 'wait') riderX = g.anchor;
+      place(riderX, state === 'descend');
+    }, 80);
+  });
+
+  // ---- Password -----------------------------------------------------------
+  function sha256(text) {
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+    });
+  }
+
+  function nextPage() {
+    var n = new URLSearchParams(location.search).get('next') || '';
+    return /^[a-z0-9-]+\.html([?#][\w=&#-]*)?$/i.test(n) ? n : 'index.html';
+  }
+  function go() { location.replace(nextPage()); }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var guess = input.value.trim().toLowerCase();
+    if (!guess) { msg.textContent = 'Type the password first.'; input.focus(); return; }
+    sha256(guess).then(function (h) {
+      if (h !== HASH) {
+        msg.textContent = "That's not it. Check the message we sent with the link.";
+        card.animate([{ marginLeft: '0' }, { marginLeft: '-7px' }, { marginLeft: '7px' }, { marginLeft: '0' }], { duration: 350 });
+        input.select();
+        return;
+      }
+      try { localStorage.setItem(KEY, TOKEN); } catch (err) {}
+      try { sessionStorage.setItem(KEY, TOKEN); } catch (err) {}
+      msg.textContent = 'Welcome! Wheee…';
+      input.blur();
+      form.querySelector('button').disabled = true;
+      if (reduce) { go(); return; }
+      state = 'descend'; t0 = performance.now(); descendFrom = riderX;
+      endX = W + g.offset + g.cw / 2 + 40;
+    });
+  });
+
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(start); else start();
+})();
+</script>
+</body>
+</html>

@@ -85,12 +85,6 @@ a { color: inherit; }
 /* Tap, click or swipe the stack to see the next photo (see slideshow.js) */
 .stack { cursor: pointer; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
 .stack img { -webkit-user-drag: none; pointer-events: none; }
-.photo-hint {
-  margin: -2.5rem 0 4rem; text-align: center;
-  font-family: var(--serif); font-style: italic; font-size: .95rem; color: var(--green);
-}
-.photo-hint .touch { display: none; }
-@media (hover: none) { .photo-hint .mouse { display: none; } .photo-hint .touch { display: inline; } }
 @media (min-width: 64.0625rem) { .stack { width: 26rem; } }
 
 /* Content */
