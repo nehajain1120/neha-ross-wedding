@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 <div class="page">
@@ -35,12 +35,13 @@
 
   <!-- Polaroid slideshow: photos live in /images (photo-01.jpg to photo-14.jpg);
        slideshow.js cycles through them. Last figure is the top of the stack. -->
-  <div class="stack" id="stack" role="group" aria-label="Photos of Neha and Ross">
+  <div class="stack" id="stack" role="button" tabindex="0" aria-label="Photos of Neha and Ross. Press Enter for the next photo.">
     <figure class="polaroid"><img src="images/photo-04.jpg" alt="Neha and Ross"></figure>
     <figure class="polaroid"><img src="images/photo-03.jpg" alt="Neha and Ross"></figure>
     <figure class="polaroid"><img src="images/photo-02.jpg" alt="Neha and Ross"></figure>
     <figure class="polaroid"><img src="images/photo-01.jpg" alt="Neha and Ross"></figure>
   </div>
+  <p class="photo-hint" aria-hidden="true"><span class="mouse">click for the next photo</span><span class="touch">tap or swipe for the next photo</span></p>
 
   <section class="section" id="note">
     <p>Hi, friends and family!</p>
@@ -57,6 +58,6 @@
     <a class="btn" href="#">RSVP</a>
   </section>
 </div>
-<script src="slideshow.js"></script>
+<script src="slideshow.js?v=4"></script>
 </body>
 </html>

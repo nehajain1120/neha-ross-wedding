@@ -21,7 +21,7 @@ a { color: inherit; }
 .page { max-width: 64rem; margin: 0 auto; padding: 1.75rem 1.5rem 6rem; overflow-x: clip; }
 
 /* Navigation: top right */
-.nav { position: relative; z-index: 3; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: .25rem 1.5rem; }
+.nav { position: relative; z-index: 3; display: flex; justify-content: center; flex-wrap: wrap; gap: .25rem 1.5rem; }
 .nav a {
   position: relative; z-index: 3; -webkit-tap-highlight-color: transparent; touch-action: manipulation;
   font-size: .95rem; font-weight: 500; text-decoration: none;
@@ -75,15 +75,22 @@ a { color: inherit; }
   background: #fff; padding: 5% 5% 17%;
   box-shadow: 0 .5rem 1.5rem rgba(110, 60, 30, .18), 0 .1rem .3rem rgba(110, 60, 30, .12);
 }
-.polaroid { transition: transform .8s cubic-bezier(.3, .7, .2, 1); will-change: transform; }
+.polaroid { transition: transform .6s cubic-bezier(.3, .7, .2, 1); will-change: transform; }
 .polaroid.no-anim { transition: none; }
 .polaroid img { display: block; background: #f3ede0; width: 100%; height: 100%; object-fit: cover; }
 .polaroid:nth-child(1) { transform: rotate(-9deg) translate(-8%, 2%); }
 .polaroid:nth-child(2) { transform: rotate(7deg) translate(9%, -2%); }
 .polaroid:nth-child(3) { transform: rotate(-3deg) translate(-2%, 4%); }
 .polaroid:nth-child(4) { transform: rotate(2deg); }
-.polaroid.leaving { transform: translate(105%, -6%) rotate(14deg); } /* slides out to the side, always opaque */
-.polaroid.no-anim { transition: none; }
+/* Tap, click or swipe the stack to see the next photo (see slideshow.js) */
+.stack { cursor: pointer; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.stack img { -webkit-user-drag: none; pointer-events: none; }
+.photo-hint {
+  margin: -2.5rem 0 4rem; text-align: center;
+  font-family: var(--serif); font-style: italic; font-size: .95rem; color: var(--green);
+}
+.photo-hint .touch { display: none; }
+@media (hover: none) { .photo-hint .mouse { display: none; } .photo-hint .touch { display: inline; } }
 @media (min-width: 64.0625rem) { .stack { width: 26rem; } }
 
 /* Content */
@@ -156,6 +163,5 @@ a { color: inherit; }
 }
 @media (prefers-reduced-motion: reduce) {
   .btn { transition: none; } .btn:hover { transform: none; }
-  .polaroid, .polaroid.leaving { transition: none; }
-  .polaroid.leaving { transform: rotate(2deg); }
+  .polaroid { transition: none; }
 }

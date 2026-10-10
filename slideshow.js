@@ -1,7 +1,17 @@
+// Polaroid slideshow.
+// - Moves to the next photo every 1.5 seconds on its own.
+// - Click or tap the photo to go to the next one.
+// - On phones, swipe the top photo left or right to flick it away.
+// Any click, tap or swipe restarts the 1.5 second timer.
 (function () {
   var stack = document.getElementById('stack');
   if (!stack) return;
-  var TOTAL = 14, INTERVAL = 3000, LEAVE_MS = 900;
+
+  var TOTAL = 14;          // photos: images/photo-01.jpg ... photo-14.jpg
+  var INTERVAL = 1500;     // ms between photos
+  var LEAVE_MS = 450;      // how long the top photo takes to slide away
+  var SWIPE_MIN = 50;      // px a finger must travel to count as a swipe
+
   function src(n) { return 'images/photo-' + (n < 10 ? '0' : '') + n + '.jpg'; }
   function wrap(n) { return ((n - 1) % TOTAL) + 1; }
 
@@ -16,27 +26,96 @@
     loaded[n] = i;
   }
   preload(next);
+  preload(next + 1);
+
+  stack.querySelectorAll('img').forEach(function (img) {
+    img.draggable = false;
+  });
 
   var busy = false;
-  function advance() {
-    if (busy || document.hidden) return;
+  var timer = null;
+
+  function schedule(ms) {
+    clearTimeout(timer);
+    timer = setTimeout(function () { advance(1); }, ms);
+  }
+
+  // dir: 1 = slide off to the right, -1 = slide off to the left
+  function advance(dir) {
+    if (busy) return;
+    if (document.hidden) { schedule(INTERVAL); return; }
     busy = true;
+    clearTimeout(timer);
+
     var top = stack.lastElementChild;
-    var photo = wrap(next);
-    top.classList.add('leaving');
+    top.style.transition = 'transform ' + LEAVE_MS + 'ms cubic-bezier(.45, 0, .7, .4)';
+    top.style.transform = 'translate(' + (dir * 115) + '%, -6%) rotate(' + (dir * 14) + 'deg)';
+
     setTimeout(function () {
-      // Send the finished polaroid to the bottom of the stack with the next photo.
-      // It stays out to the side while re-ordered, then slides back in under the pile.
-      top.classList.add('no-anim');
-      top.querySelector('img').src = src(photo);
+      // Tuck the finished polaroid under the pile with the next photo in it.
+      top.style.transition = 'none';
+      top.querySelector('img').src = src(wrap(next));
       stack.insertBefore(top, stack.firstElementChild);
       void top.offsetWidth;
-      top.classList.remove('no-anim');
-      top.classList.remove('leaving');
+      top.style.transition = '';
+      top.style.transform = '';
       next = wrap(next + 1);
       preload(next);
+      preload(next + 1);
       busy = false;
+      schedule(INTERVAL - LEAVE_MS);
     }, LEAVE_MS);
   }
-  setInterval(advance, INTERVAL);
+
+  // Tap / click / swipe handling
+  var startX = null, startY = 0, dx = 0, dragging = false, pointer = null;
+
+  stack.addEventListener('pointerdown', function (e) {
+    if (busy || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    startX = e.clientX; startY = e.clientY; dx = 0; dragging = false; pointer = e.pointerId;
+    clearTimeout(timer);
+  });
+
+  stack.addEventListener('pointermove', function (e) {
+    if (startX === null || e.pointerId !== pointer) return;
+    dx = e.clientX - startX;
+    var dy = e.clientY - startY;
+    if (!dragging && Math.abs(dx) > 8 && Math.abs(dx) > Math.abs(dy)) {
+      dragging = true;
+      try { stack.setPointerCapture(pointer); } catch (err) {}
+    }
+    if (dragging) {
+      var top = stack.lastElementChild;
+      top.style.transition = 'none';
+      top.style.transform = 'translateX(' + dx + 'px) rotate(' + (2 + dx / 25) + 'deg)';
+    }
+  });
+
+  function finish(e) {
+    if (startX === null || e.pointerId !== pointer) return;
+    var top = stack.lastElementChild;
+    if (dragging) {
+      if (Math.abs(dx) >= SWIPE_MIN) {
+        advance(dx > 0 ? 1 : -1);
+      } else {
+        top.style.transition = '';
+        top.style.transform = '';
+        schedule(INTERVAL);
+      }
+    } else if (e.type === 'pointerup') {
+      advance(1);
+    } else {
+      schedule(INTERVAL);
+    }
+    startX = null; dragging = false; pointer = null;
+  }
+  stack.addEventListener('pointerup', finish);
+  stack.addEventListener('pointercancel', finish);
+
+  // Keyboard: Enter or Space on the photo stack goes to the next photo.
+  stack.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); advance(1); }
+  });
+
+  schedule(INTERVAL);
 })();
