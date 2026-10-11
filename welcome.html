@@ -130,10 +130,6 @@
           <g id="head" transform="translate(2.5 3.5)">
             <circle cx="24" cy="-61" r="8.6" fill="#F3CDB0"/>
             <circle cx="33" cy="-61.6" r="1.5" fill="#F3CDB0"/>
-            <!-- short stubbly beard -->
-            <path fill="#A8592F" opacity=".42" d="M18.2 -62.6 Q18.4 -56.8 21.6 -55 Q25 -53.4 29.2 -54.2 Q32.6 -55.2 33 -58.6 L33.3 -59.8
-                     Q31.6 -60.3 29.8 -59.7 Q28 -59.9 27 -59 Q25.6 -57.8 24.4 -59.2 Q23.2 -61.2 21.9 -61.8 Z"/>
-            <path fill="#8E4A2A" opacity=".5" d="M26.6 -59.2 Q29.8 -60.7 33.3 -59.8 L33.2 -58.9 Q30 -59.4 27.4 -58.4Z"/>
             <!-- curly hair, close-cropped -->
             <g fill="#8E4A2A">
               <circle cx="17.2" cy="-65.6" r="3.2"/><circle cx="18.2" cy="-69.6" r="3.4"/><circle cx="22" cy="-71.5" r="3.5"/>
@@ -329,10 +325,10 @@
     var ca = slope(cx) * 0.3 + (coasting ? 0 : Math.sin(clock * 3.2) * 0.8) - 1.2;
     card.style.transform = 'translate(' + (cx - g.cw / 2).toFixed(1) + 'px,' + (cy - g.ch).toFixed(1) + 'px) rotate(' + ca.toFixed(2) + 'deg)';
 
-    // Rope from the card's right edge to the back of the saddle
+    // Rope from the card's right edge to the rear wheel hub
     var rad = ca * Math.PI / 180, lx = g.cw / 2, ly = -g.ch * 0.55;
     var ax = cx + lx * Math.cos(rad) - ly * Math.sin(rad), ay = cy + lx * Math.sin(rad) + ly * Math.cos(rad);
-    var ra = angle * Math.PI / 180, sx0 = -14 * g.s, sy0 = (-34 - 18) * g.s;
+    var ra = angle * Math.PI / 180, sx0 = -27 * g.s, sy0 = (0 - 18) * g.s;
     var bx = x + sx0 * Math.cos(ra) - sy0 * Math.sin(ra), by = y + sx0 * Math.sin(ra) + sy0 * Math.cos(ra);
     var mx = (ax + bx) / 2, my = (ay + by) / 2 + 9;
     $('rope').setAttribute('d', 'M' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' Q' + mx.toFixed(1) + ' ' + my.toFixed(1) + ' ' + bx.toFixed(1) + ' ' + by.toFixed(1));
