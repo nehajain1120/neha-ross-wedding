@@ -460,6 +460,7 @@
       form.querySelector('button').disabled = true;
       if (reduce) { go(); return; }
       state = 'descend'; t0 = performance.now(); descendFrom = riderX;
+      setTimeout(go, DESCEND + 700);   // safety net: open the site even if animations are paused
       endX = W + g.offset + g.cw / 2 + 40;
     });
   });
