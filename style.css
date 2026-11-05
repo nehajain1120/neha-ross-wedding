@@ -178,11 +178,6 @@ a { color: inherit; }
 .deco-bike { width: 4.25rem; right: calc(2% + min(19rem, 80%) + .6rem); bottom: -.4rem; }
 
 .trail-end { margin-top: 4.5rem; text-align: center; }
-.trail-end > svg { display: block; width: min(16rem, 80%); height: auto; margin: .35rem auto 0; }
-.trail-end-note {
-  margin: .5rem 0 0; color: var(--green);
-  font-family: var(--serif); font-style: italic; font-weight: 500; font-size: 1.2rem;
-}
 @media (max-width: 30rem) {
   .trail .date-card { width: 82%; }
   .trail .date-card.left { margin-left: 0; }
@@ -192,7 +187,7 @@ a { color: inherit; }
 }
 
 .soon { text-align: center; margin: 4rem auto 0; }
-.trail + .soon { margin-top: 3.5rem; }
+.trail + .soon { margin-top: 2.75rem; }
 .trail + .soon h1 { font-size: clamp(1.6rem, 5vw, 2.25rem); }
 .soon h1 {
   font-family: var(--serif); font-variation-settings: "SOFT" 100, "WONK" 1;
