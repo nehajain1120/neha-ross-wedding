@@ -7,10 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What's the Plan? | Neha &amp; Ross</title>
   <meta name="theme-color" content="#FCF6D9">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,100..900,0..100,0..1;1,9..144,100..900,0..100,0..1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <div class="page">
@@ -25,21 +28,86 @@
 
   <p class="names small"><a href="index.html">Neha <span class="amp">&amp;</span> Ross</a></p>
 
-  <section class="dates" aria-label="Wedding weekend">
-    <article class="date-card">
-      <h2>June 4th</h2>
-      <p>Cerritos, CA</p>
-    </article>
-    <article class="date-card alt">
-      <h2>June 5th</h2>
-      <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Offshore+9+Huntington+Beach+CA" target="_blank" rel="noopener">Offshore 9</a><br>Huntington Beach, CA</p>
-    </article>
+  <section class="trail" aria-label="Wedding weekend trail map">
+    <svg class="trail-svg" aria-hidden="true" focusable="false">
+      <defs><mask id="trail-reveal" maskUnits="userSpaceOnUse"><path class="reveal"/></mask></defs>
+      <path class="route" mask="url(#trail-reveal)"/>
+    </svg>
+
+    <div class="trail-head" aria-hidden="true">
+      <svg viewBox="0 0 240 140" width="240" height="140">
+        <g fill="#3F7A4F">
+          <path d="M34 108 L50 74 L44 74 L56 50 L50 50 L62 28 L74 50 L68 50 L80 74 L74 74 L90 108 Z"/>
+          <path d="M8 112 L20 88 L16 88 L25 70 L21 70 L30 54 L39 70 L35 70 L44 88 L40 88 L52 112 Z" opacity=".75"/>
+          <path d="M168 110 L182 82 L177 82 L188 60 L183 60 L194 40 L205 60 L200 60 L211 82 L206 82 L220 110 Z"/>
+          <path d="M206 114 L216 94 L213 94 L221 80 L218 80 L225 68 L232 80 L229 80 L237 94 L234 94 L244 114 Z" opacity=".75"/>
+        </g>
+        <g fill="#7A5C43"><rect x="57" y="104" width="6" height="10" rx="1"/><rect x="191" y="106" width="6" height="10" rx="1"/></g>
+        <rect x="116" y="38" width="9" height="96" rx="2" fill="#A9744F"/>
+        <rect x="66" y="18" width="110" height="30" rx="5" fill="#fff" stroke="#E8705A" stroke-width="2.5"/>
+        <text x="121" y="38.5" text-anchor="middle" class="sign-text" fill="#3F7A4F">TRAILHEAD</text>
+        <path d="M86 58 H158 L170 71 L158 84 H86 Z" fill="#E8705A"/>
+        <text x="125" y="75.5" text-anchor="middle" class="sign-text small" fill="#FCF6D9">this way</text>
+        <ellipse cx="120.5" cy="134" rx="22" ry="4" fill="#E8705A" opacity=".18"/>
+      </svg>
+      <span class="anchor" data-a="start"></span>
+    </div>
+
+    <div class="trail-row">
+      <article class="date-card left">
+        <span class="pin" data-a="p1">1</span>
+        <p class="day">Friday</p>
+        <h2>June 4th</h2>
+        <p>Cerritos, CA</p>
+        <span class="anchor bottom" data-a="b1"></span>
+      </article>
+      <svg class="deco deco-pines" viewBox="0 0 70 60" aria-hidden="true" focusable="false">
+        <g fill="#3F7A4F">
+          <path d="M8 56 L20 30 L16 30 L25 12 L34 30 L30 30 L42 56 Z"/>
+          <path d="M36 58 L45 40 L42 40 L50 26 L58 40 L55 40 L64 58 Z" opacity=".75"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="trail-row">
+      <article class="date-card alt right">
+        <span class="pin" data-a="p2">2</span>
+        <p class="day">Saturday</p>
+        <h2>June 5th</h2>
+        <p><a href="https://www.google.com/maps/search/?api=1&amp;query=Offshore+9+Huntington+Beach+CA" target="_blank" rel="noopener">Offshore 9</a><br>Huntington Beach, CA</p>
+        <span class="anchor bottom" data-a="b2"></span>
+      </article>
+      <svg class="deco deco-bike" viewBox="0 0 80 50" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="#E8705A" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="17" cy="32" r="13"/><circle cx="63" cy="32" r="13"/>
+          <path d="M17 32 L34 32 L28 14 M34 32 L54 14 L28 14 M54 14 L63 32 M23 12 H33 M50 8 L54 14 L59 13 Q63 13 62 18"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="trail-end">
+      <span class="pin heart" data-a="end" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16"><path d="M12 21.4 10.6 20C5.4 15.4 2 12.3 2 8.5 2 5.4 4.4 3 7.5 3c1.7 0 3.4.8 4.5 2.1C13.1 3.8 14.8 3 16.5 3 19.6 3 22 5.4 22 8.5c0 3.8-3.4 6.9-8.6 11.5L12 21.4Z" fill="currentColor"/></svg></span>
+      <svg viewBox="0 0 260 130" aria-hidden="true" focusable="false">
+        <circle cx="196" cy="74" r="24" fill="#E8705A" opacity=".9"/>
+        <path d="M0 78 Q20 70 40 78 T80 78 T120 78 T160 78 T200 78 T240 78 T280 78 V100 H0 Z" fill="#8EC3D0"/>
+        <path d="M0 88 Q20 82 40 88 T80 88 T120 88 T160 88 T200 88 T240 88 T280 88" fill="none" stroke="#fff" stroke-width="2" opacity=".7"/>
+        <path d="M0 102 Q65 92 130 98 T260 100 V130 H0 Z" fill="#F2D9A6"/>
+        <path d="M58 106 Q54 84 64 62" fill="none" stroke="#A9744F" stroke-width="5" stroke-linecap="round"/>
+        <g fill="#3F7A4F">
+          <path d="M64 62 Q48 52 34 62 Q48 56 64 64 Z"/><path d="M64 62 Q80 50 94 60 Q80 56 64 64 Z"/>
+          <path d="M64 62 Q56 46 44 44 Q58 52 63 63 Z"/><path d="M64 62 Q74 46 86 46 Q72 52 65 63 Z"/>
+          <path d="M64 62 Q50 64 42 76 Q54 66 64 64 Z"/>
+        </g>
+      </svg>
+      <p class="trail-end-note">You made it! See you there.</p>
+    </div>
   </section>
 
   <section class="soon">
     <h1>Coming soon</h1>
-    <p>More details are coming soon. We're still working on this page, so check back!</p>
+    <p>Times and more details for each day are coming soon, so check back!</p>
   </section>
 </div>
+<script src="trail.js?v=1"></script>
 </body>
 </html>
